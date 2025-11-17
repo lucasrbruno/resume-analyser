@@ -7,7 +7,7 @@ import { convertPdfToImage } from "~/lib/pdf2img";
 import { usePuterStore } from "~/lib/puter";
 import { generateUUID } from "~/lib/utils";
 
-const upload = () => {
+const Upload = () => {
     const { auth, isLoading, fs, ai, kv } = usePuterStore();
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
@@ -61,13 +61,13 @@ const upload = () => {
             ? feedback.message.content
             : feedback.message.content[0];
         
-        data.feedback = feedbackText;
-
+        
+        data.feedback = JSON.parse(feedbackText.text);
+        console.log(data.feedback)
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
         setStatusText("Análise concluída! Redirecionando...");
-        //navigate(`/resume/${uuid}`);  
-        console.log(data);  
+        navigate(`/resume/${uuid}`);  
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -78,7 +78,6 @@ const upload = () => {
         const companyName = formData.get('company-name');
         const jobTitle = formData.get('job-title');
         const jobDescription = formData.get('job-description');
-        console.log({ companyName, jobTitle, jobDescription, file });
 
         if (!file) return;
 
@@ -131,4 +130,4 @@ const upload = () => {
     );
 }
 
-export default upload
+export default Upload;
