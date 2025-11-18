@@ -3,14 +3,14 @@ import { useLocation, useNavigate } from "react-router";
 import { usePuterStore } from "~/lib/puter"
 
 export const meta = () => ([
-    { title: 'Analisador de Currículo | Autenticação' },
-    { name: 'description', content: 'Página de autenticação do Analisador de Currículo' }
-])
+    { title: "Analisador de Currículo | Autenticação" },
+    { name: "description", content: "Página de autenticação do Analisador de Currículo" }
+]);
 
 const Auth = () => {
     const { isLoading, auth } = usePuterStore();
     const location = useLocation();
-    const next = location.search.split('next=')[1];
+    const next = location.search.split("next=")[1];
     const navigate = useNavigate();
 
     useEffect(() => {

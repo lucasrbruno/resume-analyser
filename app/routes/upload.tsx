@@ -8,7 +8,7 @@ import { usePuterStore } from "~/lib/puter";
 import { generateUUID } from "~/lib/utils";
 
 const Upload = () => {
-    const { auth, isLoading, fs, ai, kv } = usePuterStore();
+    const {  fs, ai, kv } = usePuterStore();
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState("");
@@ -16,7 +16,7 @@ const Upload = () => {
 
     const handleFileSelect = (file: File | null) => {
         setFile(file);
-    }
+    };
 
     const handleAnalyze = async ({ companyName, jobTitle, jobDescription, file }: { companyName: string, jobTitle: string, jobDescription: string, file: File }) => {
         setIsProcessing(true);
@@ -44,7 +44,7 @@ const Upload = () => {
             companyName,
             jobTitle,
             jobDescription,
-            feedback: '',
+            feedback: "",
         };
 
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
@@ -57,7 +57,7 @@ const Upload = () => {
 
         if (!feedback) return setStatusText("Erro ao analisar currículo.");
 
-        const feedbackText = typeof feedback.message.content === 'string'
+        const feedbackText = typeof feedback.message.content === "string"
             ? feedback.message.content
             : feedback.message.content[0];
         
@@ -71,18 +71,18 @@ const Upload = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const form = e.currentTarget.closest('form')
+        const form = e.currentTarget.closest("form");
         if (!form) return;
         const formData = new FormData(form);
-        const companyName = formData.get('company-name');
-        const jobTitle = formData.get('job-title');
-        const jobDescription = formData.get('job-description');
+        const companyName = formData.get("company-name");
+        const jobTitle = formData.get("job-title");
+        const jobDescription = formData.get("job-description");
 
         if (!file) return;
 
         handleAnalyze({ companyName: companyName as string, jobTitle: jobTitle as string, jobDescription: jobDescription as string, file });
 
-    }
+    };
 
     return (
         <main className="bg-[url('/images/bg-main.svg')] bg-cover">
@@ -127,6 +127,6 @@ const Upload = () => {
             </section>
         </main>
     );
-}
+};
 
 export default Upload;

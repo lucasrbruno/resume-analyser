@@ -1,17 +1,17 @@
 
 const ScoreBadge = ({ score }: {score: number}) => {
-  let badgeColor = '';
-  let badgeText = '';
+  let badgeColor = "";
+  let badgeText = "";
 
   if (score > 70) {
-    badgeColor = 'bg-badge-green text-green-600';
-    badgeText = 'Muito bom!';
+    badgeColor = "bg-badge-green text-green-600";
+    badgeText = "Muito bom!";
   } else if (score > 49) {
-    badgeColor = 'bg-badge-yellow text-yellow-600';
-    badgeText = 'Bom começo';
+    badgeColor = "bg-badge-yellow text-yellow-600";
+    badgeText = "Bom começo";
   } else {
-    badgeColor = 'bg-badge-red text-red-600';
-    badgeText = 'Precisa melhorar';
+    badgeColor = "bg-badge-red text-red-600";
+    badgeText = "Precisa melhorar";
   }
 
   return (

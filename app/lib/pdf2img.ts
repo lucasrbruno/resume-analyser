@@ -45,7 +45,7 @@ export async function convertPdfToImage(
     if (context) {
       context.imageSmoothingEnabled = true;
       context.imageSmoothingQuality = "high";
-    }
+    };
 
     await page.render({ canvasContext: context!, viewport }).promise;
 
@@ -69,7 +69,7 @@ export async function convertPdfToImage(
               file: null,
               error: "Falha ao criar imagem do PDF.",
             });
-          }
+          };
         },
         "image/png",
         1.0
@@ -81,5 +81,5 @@ export async function convertPdfToImage(
       file: null,
       error: `Falha ao converter o PDF: ${err}`,
     };
-  }
+  };
 }

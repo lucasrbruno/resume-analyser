@@ -7,8 +7,8 @@ import { usePuterStore } from "~/lib/puter";
 
 export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "Resume Analyser" },
-    { name: "description", content: "Smart AI resumé analyser" },
+    { title: "Analisador de Currículo" },
+    { name: "description", content: "Analisador de Currículo com IA" },
   ];
 }
 
@@ -20,13 +20,13 @@ export default function Home() {
 
   useEffect(() => {
     if (!auth.isAuthenticated)
-      navigate('/auth?next=/');
+      navigate("/auth?next=/");
   }, [auth.isAuthenticated]);
 
   useEffect(() => {
     const loadResumes = async () => {
       setLoadingResumes(true);
-      const resumes = (await kv.list('resume:*', true)) as KVItem[];
+      const resumes = (await kv.list("resume:*", true)) as KVItem[];
 
       const parsedResumes = resumes?.map((resume) => (
         JSON.parse(resume.value) as Resume
@@ -49,7 +49,7 @@ export default function Home() {
           <h2>Não foi encontrado nenhum currículo. Envie seu primeiro currículo para análise!</h2>
         ) : (
           <h2>Analise seus currículos com IA e aumente suas chances de conseguir o emprego dos seus sonhos!</h2>
-        )};
+        )}
       </div>
       {loadingResumes && (
         <div className="flex flex-col items-center justify-center">
@@ -77,4 +77,4 @@ export default function Home() {
     </section>
 
   </main>;
-}
+};
